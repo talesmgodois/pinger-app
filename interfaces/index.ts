@@ -5,6 +5,13 @@
 // import User from 'path/to/interfaces';
 
 export type User = {
-  id: number
-  name: string
-}
+  id: number;
+  name: string;
+};
+
+export type Pinger = {
+  id?: any;
+  name?: string;
+  url?: string;
+  online?: boolean;
+};

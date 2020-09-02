@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0a0d1a;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Roboto;
+  font-style: normal;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  display: flex;
+  flex-flow: column;
+}
+
+.row {
+  display: flex;
+  flex-flow: row;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.pinger-input {
+  border: none;
+  width: 100%;
+  outline: none;
+  resize: none;
+  margin: 5px 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  appearance: none;
+  background-color: rgb(21, 27, 50);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 1px inset;
+}
+
+.pinger-input:focus {
+  border: 1px solid rgb(0, 153, 255);
+}
+
+.content {
+  padding: 25px;
+  max-width: 800px;
+  margin: 100px auto;
+}
+
+.head {
+  font-size: 36;
+}
