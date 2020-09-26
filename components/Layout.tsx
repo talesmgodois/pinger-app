@@ -1,3 +1,4 @@
+import { CssBaseline } from "@material-ui/core";
 import React, { ReactNode } from "react";
 import { Header } from "./Header";
 

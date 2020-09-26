@@ -1,6 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { Pinger } from "../interfaces";
+import { PingerService } from "../pages/api/pingers";
+import { LinearProgress } from "@material-ui/core";
 
 export const PingerInput = (props: any) => {
   return (
@@ -16,21 +18,36 @@ export const AddPinger = () => {
   const [pingers, setPingers]: [Pinger[], any] = useState([]);
   const [url, setUrl] = useState("");
   const [name, setName] = useState("");
-  const [online, setOnline] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
+  const [isActive, setIsActive] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const addPinger = () => {
-    console.log(pingers);
-    setPingers((state: Pinger[]) => {
-      return [
-        ...state,
-        {
-          url,
-          name,
-          online,
-        },
-      ];
-    });
+  const addPinger = async () => {
+    let storedPinger;
+    const pinger = {
+      url, 
+      name, 
+      isOnline, 
+      isActive
+    } 
+    try {
+      setIsLoading(true);
+      storedPinger = await PingerService.create(pinger);
+      clean();
+      console.log(storedPinger);
+    }catch(e) {
+      console.error(e);
+    }finally {
+      setIsLoading(false);
+    }
   };
+
+  const clean = () => {
+    setIsActive(true);
+    setIsOnline(true);
+    setName('');
+    setUrl('');
+  }
 
   const handleInputChange = (ev: any) => {
     switch (ev.target.name) {
@@ -41,11 +58,18 @@ export const AddPinger = () => {
         setUrl(ev.target.value);
         break;
       case "online":
-        setOnline(ev.target.value);
+        setIsOnline(ev.target.value);
         break;
     }
   };
+
+  const Loading = () => {
+    return isLoading? <LinearProgress />: null
+  }
+
   return (
+    <>
+    <Loading />
     <form className={"column content"}>
       <h1>Let's start pinging your website or API</h1>
       <PingerInput
@@ -72,5 +96,7 @@ export const AddPinger = () => {
         </Button>
       </div>
     </form>
+    </>
+
   );
 };
